@@ -1,9 +1,15 @@
 ## invoke examples
 
-
 ``` shell
 mantil invoke excuses/count
 mantil invoke excuses/random
+```
+
+View logs:
+``` shell
+mantil logs -n excuses
+mantil logs -n excuses -s 24h
+mantil logs -n excuses -s 24h -p "REPORT"
 ```
 
 Load list off excuses with invoke:
