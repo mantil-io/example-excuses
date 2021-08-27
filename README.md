@@ -43,7 +43,7 @@ watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 
 ## excuses lists
 
-URLs which can be use to load list of excuses:
+URLs with high quality developer excuses lists:
 
 https://gist.githubusercontent.com/ianic/f3335ba0b7ec63cbb821f8a7b735d86e/raw/066e44b04682295781164c538774db645dfe4cc6/excuses.txt
 
