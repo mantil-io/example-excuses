@@ -40,8 +40,25 @@ Get random excuse each 5 seconds:
 watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 ```
 
+## web interface
 
+index html from public/www folder is availabe at [root]/public/www/ url.  
+You can get root url by:
+
+``` shell
+mantil env -u
+```
+
+or open in the browser with this terminal command:
+``` shell
 open $(mantil env -u)/public/www/
+```
+
+## environment variables
+
+In config/environment.yml is defined preload url which will be used to get initial excuses list. 
+If not provided api will start with empty list.  
+You can always clear current list with clear command. 
 
 ## excuses lists
 
