@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/gavv/httpexpect"
-	"excuses/api/ping"
+	"github.com/mantil-io/template-excuses/api/ping"
 )
 
 func TestPing(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/gavv/httpexpect"
-	"excuses/api/excuses"
+	"github.com/gavv/httpexpect"	
+	"github.com/mantil-io/template-excuses/api/excuses"
 )
 
 func TestExcuses(t *testing.T) {
