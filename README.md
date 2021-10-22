@@ -42,7 +42,7 @@ watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 
 ## web interface
 
-index html from public/www folder is availabe at [root]/public/www/ url.  
+index.html from public/www folder is availabe at [root]/public/www/ url.  
 You can get root url by:
 
 ``` shell
