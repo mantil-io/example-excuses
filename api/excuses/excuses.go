@@ -7,6 +7,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 )
 
 type Excuses struct {
@@ -26,7 +27,14 @@ type LoadRequest struct {
 }
 
 func New() *Excuses {
-	return &Excuses{}
+	e := &Excuses{}
+	if url, ok := os.LookupEnv("preload_url"); ok {
+		log.Printf("preloading from %s", url)
+		if err := e.load(url); err != nil {
+			log.Printf("preload error %s", err)
+		}
+	}
+	return e
 }
 
 func (e *Excuses) Default(ctx context.Context) (*RandomResponse, error) {
@@ -60,10 +68,16 @@ func (e *Excuses) Load(ctx context.Context, req LoadRequest) (*CountResponse, er
 	if req.URL == "" {
 		return nil, fmt.Errorf("URL not found")
 	}
-
-	rsp, err := http.Get(req.URL)
-	if err != nil {
+	if err := e.load(req.URL); err != nil {
 		return nil, err
+	}
+	return e.Count(ctx)
+}
+
+func (e *Excuses) load(url string) error {
+	rsp, err := http.Get(url)
+	if err != nil {
+		return err
 	}
 	defer rsp.Body.Close()
 
@@ -79,8 +93,7 @@ func (e *Excuses) Load(ctx context.Context, req LoadRequest) (*CountResponse, er
 		log.Printf("added: %s", line)
 	}
 	log.Printf("count after: %d", len(e.list))
-
-	return e.Count(ctx)
+	return nil
 }
 
 // exists checks if we already have that excuse

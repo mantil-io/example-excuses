@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/gavv/httpexpect"
-	"github.com/mantil-io/template-excuses/api/ping"
+	"excuses/api/ping"
 )
 
 func TestPing(t *testing.T) {
@@ -39,7 +39,7 @@ func TestPing(t *testing.T) {
 	// method which returns error
 	api.POST("/ping/reqrsp2").
 		Expect().
-		ContentType("application/json").
+		ContentType("").
 		Status(http.StatusInternalServerError).
 		Header("x-api-error").Equal("request not found")
 

@@ -41,6 +41,8 @@ watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 ```
 
 
+open $(mantil env -u)/public/www/
+
 ## excuses lists
 
 URLs with high quality developer excuses lists:

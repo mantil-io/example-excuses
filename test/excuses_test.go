@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/gavv/httpexpect"
-	"github.com/mantil-io/template-excuses/api/excuses"
+	"excuses/api/excuses"
 )
 
 func TestExcuses(t *testing.T) {
@@ -27,7 +27,7 @@ func TestExcuses(t *testing.T) {
 	// check that random returns error
 	api.POST("/excuses/random").
 		Expect().
-		ContentType("application/json").
+		ContentType("").
 		Status(http.StatusInternalServerError).
 		Header("x-api-error").Equal("no excuses")
 
@@ -38,7 +38,7 @@ func TestExcuses(t *testing.T) {
 	api.POST("/excuses/load").
 		WithJSON(req).
 		Expect().
-		ContentType("application/json").
+		ContentType("").
 		Status(http.StatusInternalServerError).
 		Header("x-api-error").Contains("no such host")
 

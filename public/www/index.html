@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<!-- Inspired by: http://programmingexcuses.com/  -->
+<html>
+    <head>
+        <title>Excuses For Lazy Coders</title>
+        <meta name="keywords" content="Programming, Programmer, Devloping, Developer, Coding, Coders, Excuses, Reasons, Lies, Fibs, Blame, Justifications" />
+        <meta name="description" content="Excuses For Lazy Coders" />
+        <style type="text/css">* {margin: 0;}
+            html, body { height: 100%; }
+            .wrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -8em; }
+            .footer, .push {height: 8em;}
+            .content { color: #333; padding-top: 200px; font-family: Courier; font-size: 24px; font-weight: bold; }
+            .link { text-decoration: none; color: #333; }
+        </style>
+        <script>
+         function reload() {
+             var xmlhttp = new XMLHttpRequest();
+             xmlhttp.onreadystatechange = function() {
+                 if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                     if (xmlhttp.status == 200) {
+                         var data = JSON.parse(xmlhttp.responseText)
+                         console.log("excuse:", data.Excuse)
+                         document.getElementById("excuse").innerHTML = data.Excuse;
+                         return;
+                     }
+                     if (xmlhttp.status == 500) {
+                         var err = xmlhttp.getResponseHeader("x-api-error");
+                         if (err != "") {
+                             console.error(err);
+                             document.getElementById("excuse").innerHTML = "Error: " + err;
+                             return;
+                         }
+                     }
+                     console.error("unknow error", hmlhttp)
+                 }
+             };
+
+             xmlhttp.open("POST", "/excuses/random", true);
+             xmlhttp.send();
+         }
+        </script>
+    </head>
+    <body onload="reload()">
+        <div class="wrapper">
+            <center class="content">
+                <a class="link" id="excuse" href="#" onclick="reload(); return false;" rel="nofollow"></a>
+            </center>
+            <div class="push"></div>
+        </div>
+        <div class="footer"></div>
+    </body>
+</html>
+
+
