@@ -115,4 +115,23 @@ watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 
 Try to remove preload_url from config/environment.yml. After deploy function will always start with empty list.
 
+## Test
 
+Run tests with:
+```
+mantil test
+```
+Explore test/excuses_test.go file to get the feeling how to use integration tests in Mantil.
+
+## Cleanup
+
+Remove created stage with:
+```
+mantil stage destroy development
+```
+After that all resource created in the AWS account are remove. You can delete this test project folder.
+
+```
+cd ..
+rm -rf my-excuses
+```
