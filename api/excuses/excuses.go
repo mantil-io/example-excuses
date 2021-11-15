@@ -10,6 +10,10 @@ import (
 	"os"
 )
 
+const (
+	preloadURLEnv = "preload_url"
+)
+
 type Excuses struct {
 	list []string
 }
@@ -28,7 +32,7 @@ type LoadRequest struct {
 
 func New() *Excuses {
 	e := &Excuses{}
-	if url, ok := os.LookupEnv("preload_url"); ok {
+	if url, ok := os.LookupEnv(preloadURLEnv); ok {
 		log.Printf("preloading from %s", url)
 		if err := e.load(url); err != nil {
 			log.Printf("preload error %s", err)
