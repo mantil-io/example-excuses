@@ -1,10 +1,10 @@
-package main
+package test
 
 import (
 	"net/http"
 	"testing"
 
-	"github.com/gavv/httpexpect"	
+	"github.com/gavv/httpexpect"
 	"github.com/mantil-io/template-excuses/api/excuses"
 )
 
