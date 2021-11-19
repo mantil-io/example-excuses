@@ -1,21 +1,32 @@
 ## About
 
-This is simple Mantil project template which will demonstrate few Mantil concepts. It has single Lambda function which holds list of programming excuses (strings). API has methods for:
+This is simple Mantil project template which will demonstrate few Mantil
+concepts. It has single Lambda function which holds list of programming excuses
+(strings). API has methods for:
 * getting [number of items](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/api/excuses/excuses.go#L45) in the list
 * [clearing](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/api/excuses/excuses.go#L50) list
 * [loading](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/api/excuses/excuses.go#L67) into list from some URL   
 * [getting](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/api/excuses/excuses.go#L56) random item from the list. 
 
 
-First concept to show is use of environment variables. In this case we will use project wide environment variable. They can be also set at individual stage level. That is a way to configure same lambda function to work differently in different stages. In our case we will use environment variable to set [preload_url](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/config/environment.yml#L36) which will be used during lambda function cold start to load initial list of excuses. If not set application will start with empty list of excuses.
+First concept to show is use of environment variables. In this case we will use
+project wide environment variable. They can be also set at individual stage
+level which is way to configure same Lambda function to work differently in
+different stages. In our case we will use environment variable to set
+[preload_url](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/config/environment.yml#L36)
+which will be used during Lambda function cold start to load initial list of
+excuses. If preload_url is not set application will start with empty list of
+excuses.
 
-Second concept is integration between UI and API. Project has simple [web page](https://github.com/mantil-io/template-excuses/blob/master/public/www/index.html) which will show random excuse, and on each click call API to get new random excuse.  
+Second concept is integration between UI and API. Project has simple [web page](https://github.com/mantil-io/template-excuses/blob/master/public/index.html) which will show random excuse, and on each click call API to get new random excuse.  
 
-## Creating Project
+## Create new project from template
 
-`mantil new` command has flag `--from` for creating a new project from existing template. 
+`mantil new` command has flag `--from` for creating a new project from existing
+template.
 
-We will use this set of commands to create project from template, create new stage and deploy project to the stage. 
+We will use this set of commands to create project from template, create new
+stage and deploy project to the stage.
 
 ```
 mantil new my-excuses --from https://github.com/mantil-io/template-excuses
@@ -25,7 +36,7 @@ mantil stage new development
 
 After that we can load project web page at URL:
 ```
-open $(mantil env --url)/public/www/
+open $(mantil env --url)
 ```
 
 Web page should look like:
@@ -40,7 +51,6 @@ Let's call some API methods:
 
 ```
 mantil invoke excuses/count
-
 mantil invoke excuses/random
 ```
 
@@ -50,8 +60,7 @@ curl -X POST $(mantil env -u)/excuses/count
 curl -X POST $(mantil env -u)/excuses/random
 ```
 
-
-Explore `mantil logs` command. It will show logs from the lambda function
+Explore `mantil logs` command. It will show logs from the Lambda function
 execution. First form will show all logs. Second only REPORT lines.
 
 ```
@@ -59,10 +68,9 @@ mantil logs excuses
 mantil logs excuses --filter-pattern "REPORT"
 ```
 
-
 ## Loading list of excuses
 
-To clear excuses list execute:
+To clear current list execute:
 ```
 mantil invoke excuses/clear
 ```
@@ -88,7 +96,7 @@ https://gist.githubusercontent.com/orf/db8eb0aaddeea92dfcab/raw/5e9a8958fce65b1f
 
 ## Web interface
 
-index.html page from public/www folder is availabe at [root]/public/www/ URL.
+index.html page from project _public_ folder is availabe at root URL.
 You can get root URL by:
 
 ```
@@ -97,23 +105,24 @@ mantil env -u
 
 or open in the browser with this terminal command:
 ```
-open $(mantil env -u)/public/www/
+open $(mantil env -u)
 ```
 
 
 ## Random excuse in terminal
 
-If you have yq tool in you terminal, this is use full one liner to be ready when some manager comes into room: 
+If you have yq tool in you terminal, this is use full one liner to be ready when
+some manager comes into room:
 
 ```
 watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
 ```
 
 
-
 ## Environment variable
 
-Try to remove preload_url from config/environment.yml. After deploy function will always start with empty list.
+Try to remove preload_url from config/environment.yml. After deploy function
+will always start with empty list.
 
 ## Test
 
@@ -121,7 +130,9 @@ Run tests with:
 ```
 mantil test
 ```
-Explore test/excuses_test.go file to get the feeling how to use integration tests in Mantil.
+
+Explore test/excuses_test.go file to get the feeling how to use integration
+tests in Mantil.
 
 ## Cleanup
 
@@ -129,7 +140,9 @@ Remove created stage with:
 ```
 mantil stage destroy development
 ```
-After that all resource created in the AWS account are remove. You can delete this test project folder.
+
+After that all resource created in the AWS account are remove. You can delete
+this test project folder.
 
 ```
 cd ..
