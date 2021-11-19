@@ -16,7 +16,7 @@ different stages.
 In our case we will use environment variable to set
 [preload_url](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/config/environment.yml#L36)
 which will be used during Lambda function cold start to load initial list of
-excuses. If preload_url is not set application will start with empty list of
+excuses. If _preload_url_ is not set application will start with empty list of
 excuses.
 
 Second concept is integration between UI and API. Project has simple [web page](https://github.com/mantil-io/template-excuses/blob/master/public/index.html) which will show random excuse, and on each click call API to get new random excuse.  
@@ -112,7 +112,7 @@ open $(mantil env --url)
 
 ## Random excuse in terminal
 
-If you have [jq](https://github.com/stedolan/jq) - terminal JSON processor, this
+If you have [jq](https://github.com/stedolan/jq) (JSON processor), this
 is usefull one liner to be ready when some manager comes into room:
 
 ```
@@ -122,7 +122,7 @@ watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | jq -r .Excuse'
 
 ## Environment variable
 
-Try to remove preload_url from config/environment.yml. After deploy function
+Try to remove _preload_url_ from config/environment.yml. After deploy function
 will always start with empty list.
 
 ## Test
