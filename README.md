@@ -12,7 +12,8 @@ concepts. It has single Lambda function which holds list of programming excuses
 First concept to show is use of environment variables. In this case we will use
 project wide environment variable. They can be also set at individual stage
 level which is way to configure same Lambda function to work differently in
-different stages. In our case we will use environment variable to set
+different stages.   
+In our case we will use environment variable to set
 [preload_url](https://github.com/mantil-io/template-excuses/blob/601410bb2c25d1ea9c825c026087ffde5edcae1f/config/environment.yml#L36)
 which will be used during Lambda function cold start to load initial list of
 excuses. If preload_url is not set application will start with empty list of
@@ -96,26 +97,26 @@ https://gist.githubusercontent.com/orf/db8eb0aaddeea92dfcab/raw/5e9a8958fce65b1f
 
 ## Web interface
 
-index.html page from project _public_ folder is availabe at root URL.
+_index.html_ page from project _/public_ folder is availabe at root URL.
 You can get root URL by:
 
 ```
-mantil env -u
+mantil env --url
 ```
 
 or open in the browser with this terminal command:
 ```
-open $(mantil env -u)
+open $(mantil env --url)
 ```
 
 
 ## Random excuse in terminal
 
-If you have yq tool in you terminal, this is use full one liner to be ready when
-some manager comes into room:
+If you have [jq](https://github.com/stedolan/jq) - terminal JSON processor, this
+is usefull one liner to be ready when some manager comes into room:
 
 ```
-watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | yq -r .Excuse'
+watch -t -n 5 'curl -s -X POST $(mantil env -u)/excuses/random | jq -r .Excuse'
 ```
 
 
