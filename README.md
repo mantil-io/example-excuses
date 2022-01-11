@@ -58,7 +58,7 @@ open $(mantil env --url)
 
 The web page should look like:
 
-![web page](/excuses.png)
+![web page](images/excuses.png)
 
 Click on the excuse text to get a new random text.
 
