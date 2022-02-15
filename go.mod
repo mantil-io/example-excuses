@@ -12,6 +12,7 @@ require (
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
+	github.com/mantil-io/mantil.go v0.1.10 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/moul/http2curl v1.0.0 // indirect
 	github.com/onsi/gomega v1.16.0 // indirect
@@ -25,6 +26,5 @@ require (
 	github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82 // indirect
 	github.com/yudai/pp v2.0.1+incompatible // indirect
 	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
-	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
 )
